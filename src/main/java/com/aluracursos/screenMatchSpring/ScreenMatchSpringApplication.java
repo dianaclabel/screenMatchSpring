@@ -1,0 +1,30 @@
+package com.aluracursos.screenMatchSpring;
+
+import com.aluracursos.screenMatchSpring.model.DatosSerie;
+import com.aluracursos.screenMatchSpring.service.ConsumoAPI;
+import com.aluracursos.screenMatchSpring.service.ConvierteDatos;
+import org.springframework.boot.CommandLineRunner;
+import org.springframework.boot.SpringApplication;
+import org.springframework.boot.autoconfigure.SpringBootApplication;
+
+@SpringBootApplication
+public class ScreenMatchSpringApplication implements CommandLineRunner{
+
+	public static void main(String[] args) {
+		SpringApplication.run(ScreenMatchSpringApplication.class, args);
+	}
+
+
+	@Override
+	public void run(String... args) throws Exception {
+		var consumoApi = new ConsumoAPI();
+		var json = consumoApi.obtenerDatos("https://www.omdbapi.com/?t=game+of+throne&apikey=597dbcb5");
+		//var json = consumoApi.obtenerDatos("https://coffee.alexflipnote.dev/random.json");
+		System.out.println(json);
+		ConvierteDatos conversor = new ConvierteDatos();
+		var datos = conversor.obtenerDatos(json, DatosSerie.class);
+		System.out.println(datos);
+	}
+
+
+}
