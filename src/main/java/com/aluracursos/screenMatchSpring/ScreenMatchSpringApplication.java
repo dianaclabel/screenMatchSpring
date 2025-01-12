@@ -1,5 +1,6 @@
 package com.aluracursos.screenMatchSpring;
 
+import com.aluracursos.screenMatchSpring.model.DatosEpisodio;
 import com.aluracursos.screenMatchSpring.model.DatosSerie;
 import com.aluracursos.screenMatchSpring.service.ConsumoAPI;
 import com.aluracursos.screenMatchSpring.service.ConvierteDatos;
@@ -24,6 +25,14 @@ public class ScreenMatchSpringApplication implements CommandLineRunner{
 		ConvierteDatos conversor = new ConvierteDatos();
 		var datos = conversor.obtenerDatos(json, DatosSerie.class);
 		System.out.println(datos);
+
+
+		json = consumoApi.obtenerDatos("https://www.omdbapi.com/?t=game+of+thrones&Season=1&episode=1&apikey=597dbcb5");
+		DatosEpisodio episodios = conversor.obtenerDatos(json, DatosEpisodio.class);
+
+		System.out.println(episodios);
+
+
 	}
 
 

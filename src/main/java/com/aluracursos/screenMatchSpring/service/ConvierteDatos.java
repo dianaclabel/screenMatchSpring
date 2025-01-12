@@ -9,6 +9,7 @@ public class ConvierteDatos implements IConvierteDatos {
 
 
     @Override
+    //Deserialización: Convertir una cadena JSON a un objeto Java.
     public <T> T obtenerDatos(String json, Class<T> clase) {
 
         try {
